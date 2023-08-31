@@ -10,7 +10,7 @@ const Logo = ({ onRouteChange }) => {
       glareMaxOpacity={0.8}
       glareColor="#ffffff"
       glarePosition="bottom"
-      glareBorderRadius="5px"
+      glareBorderRadius="15px"
       className="br4 bg-black-50 pa3 tilt shadow-5"
     >
       <img onClick={() => onRouteChange("welcome")} src={palette} alt="logo" />
