@@ -14,7 +14,7 @@ import FaceRecognition from "./Components/FaceRecognition/FaceRecognition";
 const PAT = "8b2e1ee2f5e54aafa7be34b6795656a3";
 const USER_ID = "peusilva";
 const APP_ID = "my-first-application-pjcki";
-const MODEL_ID = "face-detection";
+const MODEL_ID = "color-recognition";
 const sendRequestOptions = (imageURL) => {
   const IMAGE_URL = imageURL;
 
@@ -54,6 +54,7 @@ class App extends Component {
       input: "",
       imageUrl: "",
       box: {},
+      colors: [],
       route: "welcome",
       isSignedIn: false,
       user: {
@@ -134,7 +135,7 @@ class App extends Component {
               this.setState(Object.assign(this.state.user, { entries: count }));
             });
         }
-        this.displayFaceBox(this.calculateFaceLocation(result));
+        this.setState({ colors: result.outputs[0].data.colors });
       })
       .catch((error) => console.log("error", error));
   };
@@ -150,7 +151,7 @@ class App extends Component {
   };
 
   render() {
-    const { isSignedIn, imageUrl, route, box } = this.state;
+    const { isSignedIn, imageUrl, route, box, colors } = this.state;
     return (
       <div className="App">
         <header className="flex justify-between pa3">
@@ -172,7 +173,7 @@ class App extends Component {
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit}
             />
-            <FaceRecognition box={box} imageUrl={imageUrl} />
+            <FaceRecognition box={box} imageUrl={imageUrl} colors={colors} />
           </div>
         ) : route === "welcome" ? (
           <Welcome onRouteChange={this.onRouteChange} />
@@ -184,7 +185,7 @@ class App extends Component {
             onRouteChange={this.onRouteChange}
           />
         )}
-        <ParticlesBg type="circle" blur={5} num={20} bg={true} />
+        <ParticlesBg type="circle" num={15} bg={true} />
       </div>
     );
   }

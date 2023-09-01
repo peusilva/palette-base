@@ -12,6 +12,15 @@ body {
   color: white;
 }
 
+.App {
+  background:
+    linear-gradient(rgba(255, 0, 0, 0.5), transparent),
+    linear-gradient(to top left, rgba(0, 255, 0, 0.5), transparent),
+    linear-gradient(to top right, rgba(0, 0, 255, 0.5), transparent);
+  background-blend-mode: screen;
+  height: 100vh;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
