@@ -1,6 +1,6 @@
 import React from "react";
 
-const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
+const ImageLinkForm = ({ onInputChange, onButtonSubmit, input }) => {
   return (
     <div>
       <p className="f3">
@@ -14,6 +14,9 @@ const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
             Detect
           </button>
         </div>
+        {input.length >= 2000 && (
+          <p className="red">Please use a link shorter than 2000 characters</p>
+        )}
       </p>
     </div>
   );

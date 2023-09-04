@@ -5,7 +5,9 @@ const Welcome = ({ onRouteChange }) => {
     <div>
       <div className="f1">Welcome to Palette Base!</div>
       <div className="pb6">
-        Generate your project's color palette based on any art
+        Use AI to detect and generate a complete colour palette to use in your
+        project, {window.innerWidth > 750 && <br />}
+        based on whatever art you want!
       </div>
       <p
         onClick={() => onRouteChange("signin")}

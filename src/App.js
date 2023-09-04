@@ -11,7 +11,7 @@ import ParticlesBg from "particles-bg";
 import FaceRecognition from "./Components/FaceRecognition/FaceRecognition";
 
 ///////////////////////////API SETUP
-const PAT = "8b2e1ee2f5e54aafa7be34b6795656a3";
+const PAT = import.meta.env.REACT_APP_API_CLARIFAI_KEY;
 const USER_ID = "peusilva";
 const APP_ID = "my-first-application-pjcki";
 const MODEL_ID = "color-recognition";
@@ -47,24 +47,26 @@ const sendRequestOptions = (imageURL) => {
 };
 ///////////////////////////API SETUP END
 
+const initialState = {
+  input: "",
+  imageUrl: "",
+  box: {},
+  colors: [],
+  route: "welcome",
+  isSignedIn: false,
+  user: {
+    id: "",
+    name: "",
+    email: "",
+    entries: 0,
+    joined: "",
+  },
+};
+
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      input: "",
-      imageUrl: "",
-      box: {},
-      colors: [],
-      route: "welcome",
-      isSignedIn: false,
-      user: {
-        id: "",
-        name: "",
-        email: "",
-        entries: 0,
-        joined: "",
-      },
-    };
+    this.state = initialState;
   }
 
   //Creating loadUser function
@@ -133,7 +135,8 @@ class App extends Component {
             .then((response) => response.json())
             .then((count) => {
               this.setState(Object.assign(this.state.user, { entries: count }));
-            });
+            })
+            .catch(console.log());
         }
         this.setState({ colors: result.outputs[0].data.colors });
       })
@@ -142,7 +145,7 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === "signout") {
-      this.setState({ isSignedIn: false });
+      this.setState(initialState);
       this.setState({ route: "signin" });
     } else if (route === "home") {
       this.setState({ isSignedIn: true });
@@ -151,7 +154,7 @@ class App extends Component {
   };
 
   render() {
-    const { isSignedIn, imageUrl, route, box, colors } = this.state;
+    const { isSignedIn, imageUrl, route, input, box, colors } = this.state;
     return (
       <div className="App">
         <header className="flex justify-between pa3">
@@ -172,6 +175,7 @@ class App extends Component {
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit}
+              input={input}
             />
             <FaceRecognition box={box} imageUrl={imageUrl} colors={colors} />
           </div>
@@ -185,7 +189,9 @@ class App extends Component {
             onRouteChange={this.onRouteChange}
           />
         )}
-        <ParticlesBg type="circle" num={15} bg={true} />
+        <div className="background-particles">
+          <ParticlesBg className="fixed" type="circle" num={15} bg={true} />
+        </div>
       </div>
     );
   }
