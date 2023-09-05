@@ -2,7 +2,7 @@ import React from "react";
 import "./FaceRecognition.css";
 import copy from "./copy-solid.svg";
 
-const FaceRecognition = ({ imageUrl, box, colors }) => {
+const FaceRecognition = ({ imageUrl, box, colors, isLoading }) => {
   return (
     <div className="center flex-col items-center justify-center ml-1 mr-1">
       <div className="mt2">
@@ -16,6 +16,7 @@ const FaceRecognition = ({ imageUrl, box, colors }) => {
         ></img>
         {/* <div className='bounding-box' style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol }}></div>   */}
       </div>
+      {isLoading && <p>Loading colors...</p>}
       <div className="flex items-center justify-center">
         <div className="flex-col ml4 tl">
           {colors[0] && <h1 className="tc">Colors:</h1>}

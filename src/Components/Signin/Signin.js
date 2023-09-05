@@ -6,6 +6,7 @@ class Signin extends React.Component {
     this.state = {
       signInEmail: "",
       signInPassword: "",
+      isLoading: false,
     };
   }
   onEmailChange = (event) => {
@@ -15,6 +16,7 @@ class Signin extends React.Component {
     this.setState({ signInPassword: event.target.value });
   };
   onSubmitSignIn = () => {
+    this.setState({ isLoading: true });
     fetch("https://palette-base-api.onrender.com/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -29,11 +31,12 @@ class Signin extends React.Component {
           this.props.loadUser(user);
           this.props.onRouteChange("home");
         }
+        this.setState({ isLoading: false });
       });
   };
 
   render() {
-    const { onRouteChange, isLoading } = this.props;
+    const { onRouteChange } = this.props;
     return (
       <article className="br3 ba bg-black-50 dark-gray b--white-50 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 white-80">
@@ -82,7 +85,7 @@ class Signin extends React.Component {
                 Register
               </p>
             </div>
-            {isLoading && <p>Signing in...</p>}
+            {this.state.isLoading && <p>Signing in...</p>}
           </div>
         </main>
       </article>

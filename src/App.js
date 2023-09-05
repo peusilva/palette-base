@@ -181,21 +181,21 @@ class App extends Component {
               onButtonSubmit={this.onButtonSubmit}
               input={input}
             />
-            <FaceRecognition box={box} imageUrl={imageUrl} colors={colors} />
+            <FaceRecognition
+              box={box}
+              imageUrl={imageUrl}
+              colors={colors}
+              isLoading={isLoading}
+            />
           </div>
         ) : route === "welcome" ? (
           <Welcome onRouteChange={this.onRouteChange} />
         ) : route === "signin" || route === "signout" ? (
-          <Signin
-            loadUser={this.loadUser}
-            onRouteChange={this.onRouteChange}
-            isLoading={isLoading}
-          />
+          <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         ) : (
           <Register
             loadUser={this.loadUser}
             onRouteChange={this.onRouteChange}
-            isLoading={isLoading}
           />
         )}
         <div className="background-particles">

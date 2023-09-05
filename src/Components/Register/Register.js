@@ -7,6 +7,7 @@ class Register extends React.Component {
       email: "",
       password: "",
       name: "",
+      isLoading: false,
     };
   }
 
@@ -20,6 +21,7 @@ class Register extends React.Component {
     this.setState({ password: event.target.value });
   };
   onSubmitRegister = () => {
+    this.setState({ isLoading: true });
     fetch("https://palette-base-api.onrender.com/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -35,11 +37,11 @@ class Register extends React.Component {
           this.props.loadUser(user);
           this.props.onRouteChange("home");
         }
+        this.setState({ isLoading: false });
       });
   };
 
   render() {
-    const { isLoading } = this.props;
     return (
       <article className="br3 ba bg-black-50 dark-gray b--white-50 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 white-80">
@@ -91,7 +93,7 @@ class Register extends React.Component {
                 value="Register"
               />
             </div>
-            {isLoading && <p>Creating user...</p>}
+            {this.state.isLoading && <p>Creating user...</p>}
           </div>
         </main>
       </article>
