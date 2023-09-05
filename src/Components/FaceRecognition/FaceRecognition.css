@@ -14,3 +14,7 @@
 .copy {
     height: 15px;
 }
+
+.hex {
+    text-shadow: 1px 1px black;
+}

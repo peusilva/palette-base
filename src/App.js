@@ -11,7 +11,7 @@ import ParticlesBg from "particles-bg";
 import FaceRecognition from "./Components/FaceRecognition/FaceRecognition";
 
 ///////////////////////////API SETUP
-const PAT = import.meta.env.REACT_APP_API_CLARIFAI_KEY;
+const PAT = "8b2e1ee2f5e54aafa7be34b6795656a3";
 const USER_ID = "peusilva";
 const APP_ID = "my-first-application-pjcki";
 const MODEL_ID = "color-recognition";

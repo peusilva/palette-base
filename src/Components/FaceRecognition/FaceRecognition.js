@@ -3,7 +3,6 @@ import "./FaceRecognition.css";
 import copy from "./copy-solid.svg";
 
 const FaceRecognition = ({ imageUrl, box, colors }) => {
-  console.log(colors);
   return (
     <div className="center flex-col items-center justify-center ml-1 mr-1">
       <div className="mt2">
@@ -21,19 +20,28 @@ const FaceRecognition = ({ imageUrl, box, colors }) => {
         <div className="flex-col ml4 tl">
           {colors[0] && <h1 className="tc">Colors:</h1>}
           {colors.map((item) => {
-            return <p className="pv2">{item.w3c.name}</p>;
+            return (
+              <p key={item.w3c.name} className="pv2">
+                {item.w3c.name}
+              </p>
+            );
           })}
         </div>
         <div className="flex-col mt5">
           {colors.map((item) => {
-            return <p className="pv2">{Math.floor(item.value * 100)}%</p>;
+            return (
+              <p key={item.value} className="pv2">
+                {Math.floor(item.value * 100)}%
+              </p>
+            );
           })}
         </div>
         <div className="flex-col mt5 ml4 pointer">
           {colors.map((item) => {
             return (
-              <div className="flex items-center">
+              <div key={item.w3c.hex} className="flex items-center">
                 <p
+                  className="hex"
                   onClick={() => {
                     navigator.clipboard.writeText(item.w3c.hex);
                   }}
