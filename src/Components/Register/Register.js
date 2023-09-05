@@ -90,6 +90,7 @@ class Register extends React.Component {
                 value="Register"
               />
             </div>
+            {this.props.state.isLoading && <p>Creating user...</p>}
           </div>
         </main>
       </article>

@@ -82,6 +82,7 @@ class Signin extends React.Component {
                 Register
               </p>
             </div>
+            {this.props.state.isLoading && <p>Signing in...</p>}
           </div>
         </main>
       </article>

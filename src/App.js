@@ -53,6 +53,7 @@ const initialState = {
   box: {},
   colors: [],
   route: "welcome",
+  isLoading: false,
   isSignedIn: false,
   user: {
     id: "",
@@ -118,6 +119,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
+    this.setState({ isLoading: true });
     fetch(
       "https://api.clarifai.com/v2/models/" + MODEL_ID + "/outputs",
       sendRequestOptions(this.state.input)
@@ -139,6 +141,7 @@ class App extends Component {
             .catch(console.log());
         }
         this.setState({ colors: result.outputs[0].data.colors });
+        this.setState({ isLoading: false });
       })
       .catch((error) => console.log("error", error));
   };
