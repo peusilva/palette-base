@@ -157,7 +157,8 @@ class App extends Component {
   };
 
   render() {
-    const { isSignedIn, imageUrl, route, input, box, colors } = this.state;
+    const { isSignedIn, imageUrl, route, input, box, colors, isLoading } =
+      this.state;
     return (
       <div className="App">
         <header className="flex justify-between pa3">
@@ -185,11 +186,16 @@ class App extends Component {
         ) : route === "welcome" ? (
           <Welcome onRouteChange={this.onRouteChange} />
         ) : route === "signin" || route === "signout" ? (
-          <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+          <Signin
+            loadUser={this.loadUser}
+            onRouteChange={this.onRouteChange}
+            isLoading={isLoading}
+          />
         ) : (
           <Register
             loadUser={this.loadUser}
             onRouteChange={this.onRouteChange}
+            isLoading={isLoading}
           />
         )}
         <div className="background-particles">

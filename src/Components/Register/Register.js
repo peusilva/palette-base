@@ -39,6 +39,7 @@ class Register extends React.Component {
   };
 
   render() {
+    const { isLoading } = this.props;
     return (
       <article className="br3 ba bg-black-50 dark-gray b--white-50 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 white-80">
@@ -90,7 +91,7 @@ class Register extends React.Component {
                 value="Register"
               />
             </div>
-            {this.props.state.isLoading && <p>Creating user...</p>}
+            {isLoading && <p>Creating user...</p>}
           </div>
         </main>
       </article>
