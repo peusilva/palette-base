@@ -21,7 +21,7 @@ const Welcome = ({ onRouteChange }) => {
       >
         Register
       </p>
-      <div onClick={() => onRouteChange("home")}> DEV </div>
+      {/* <div onClick={() => onRouteChange("home")}> DEV </div> */}
     </div>
   );
 };
